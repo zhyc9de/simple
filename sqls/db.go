@@ -2,6 +2,7 @@ package sqls
 
 import (
 	"database/sql"
+	"gorm.io/gorm/clause"
 
 	"gorm.io/gorm"
 )
@@ -57,6 +58,14 @@ var (
 
 func DB() *gorm.DB {
 	return _db
+}
+
+func Ignore() *gorm.DB {
+	return _db.Clauses(clause.Insert{Modifier: "IGNORE"})
+}
+
+func Duplicate(on clause.OnConflict) *gorm.DB {
+	return _db.Clauses(on)
 }
 
 func SetDB(gormDB *gorm.DB) {
