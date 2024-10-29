@@ -13,9 +13,11 @@ func SqlNullString(value string) sql.NullString {
 	}
 }
 
+var Wrapper = "`"
+
 func KeywordWrap(keyword string) string {
 	if strs.IsBlank(keyword) {
 		return keyword
 	}
-	return "`" + keyword + "`"
+	return Wrapper + keyword + Wrapper
 }
